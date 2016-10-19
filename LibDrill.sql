@@ -13,13 +13,14 @@ Create Table Book_Copies
 	(BookID int NOT NULL, BranchID int NOT NULL, No_Of_Copies Int Null)
 GO
 Create Table Book_Loans
-	(BookID int NOT NULL, BranchID int NOT NULL, CardNO int NOT NULL, DateOut date NULL, DueDate date NULL)
+	(BookID int NOT NULL, BranchID int NOT NULL, CardNO int NOT NULL, DateOut varchar(10) NULL, DueDate varchar(10) NULL)
 GO
 Create Table Library_Branch
 	(BranchID int NOT NULL, BranchName varchar(30) NULL, Address varchar(50) NULL)
 GO
 Create Table Borrower
 	(CardNO int NOT NULL, Name varchar(20) NULL, Address varchar(50) NULL, Phone varchar(10) NULL)
+
 GO
 --------------------------------------------------------------- ADD BOOK
 Create Procedure AddBook
@@ -61,8 +62,8 @@ Create Procedure AddLoans
 	@BookID int,
 	@BranchID int,
 	@CardNO int,
-	@DateOut date,
-	@DueDate date
+	@DateOut varchar(10),
+	@DueDate varchar(10)
 AS
 INSERT INTO Book_Loans (BookID, BranchID, CardNO, DateOut, DueDate)
 VALUES (@BookID, @BranchID, @CardNO, @DateOut, @DueDate)
@@ -242,37 +243,39 @@ EXECUTE AddCopies 20, 101, 15
 EXECUTE AddCopies 20, 104, 7
 GO
 ------Loans------ id name add phone
-EXECUTE AddBorrow 1, 'Steve', Null, Null
-EXECUTE AddBorrow 2, 'John', Null, Null
-EXECUTE AddBorrow 3, 'Ryan', Null, Null
-EXECUTE AddBorrow 4, 'Sally', Null, Null
-EXECUTE AddBorrow 5, 'Joanna', Null, Null
-EXECUTE AddBorrow 6, 'Jefferson', Null, Null
-EXECUTE AddBorrow 7, 'Hwong', Null, Null
-EXECUTE AddBorrow 8, 'Ryu', Null, Null
-EXECUTE AddBorrow 9, 'Ken', Null, Null
-EXECUTE AddBorrow 10, 'Guile', Null, Null
-EXECUTE AddBorrow 11, 'Birdie', Null, Null
-EXECUTE AddBorrow 12, 'Rashid', Null, Null
-EXECUTE AddBorrow 13, 'Mauricio', Null, Null
-EXECUTE AddBorrow 14, 'Mira', Null, Null
-EXECUTE AddBorrow 15, 'Jessica', Null, Null
-EXECUTE AddBorrow 16, 'Grace', Null, Null
-EXECUTE AddBorrow 17, 'Rey', Null, Null
-EXECUTE AddBorrow 18, 'Sarah', Null, Null
-EXECUTE AddBorrow 19, 'Brittney', Null, Null
-EXECUTE AddBorrow 20, 'Justin', Null, Null
-EXECUTE AddBorrow 21, 'Tyler', Null, Null
-EXECUTE AddBorrow 22, 'Peter', Null, Null
-EXECUTE AddBorrow 23, 'Jackson', Null, Null
-EXECUTE AddBorrow 24, 'Mia', Null, Null
-EXECUTE AddBorrow 25, 'Triss', Null, Null
-EXECUTE AddBorrow 26, 'Seth', Null, Null
-EXECUTE AddBorrow 27, 'Jenny', Null, Null
-EXECUTE AddBorrow 28, 'Baek', Null, Null
-EXECUTE AddBorrow 29, 'Oliver', Null, Null
-EXECUTE AddBorrow 30, 'Amy', Null, Null
-EXECUTE AddBorrow 31, 'Jimmy', Null, Null
+EXECUTE AddBorrow 1, 'Steve', '1 st', 1111111
+EXECUTE AddBorrow 2, 'John', '2 st', 2222222
+EXECUTE AddBorrow 3, 'Ryan', '3 st', 3333333
+EXECUTE AddBorrow 4, 'Sally', '4 st', 4444444
+EXECUTE AddBorrow 5, 'Joanna', '5 st', 5555555
+EXECUTE AddBorrow 6, 'Jefferson', '6 st', 6666666
+EXECUTE AddBorrow 7, 'Hwong', '7 st', 7777777
+EXECUTE AddBorrow 8, 'Ryu', '8 st', 8888888
+EXECUTE AddBorrow 9, 'Ken', '9 st', 9999999
+EXECUTE AddBorrow 10, 'Guile', '10 st', 1010101
+EXECUTE AddBorrow 11, 'Birdie', '11 st', 1212121
+EXECUTE AddBorrow 12, 'Rashid', '12 st', 1313131
+EXECUTE AddBorrow 13, 'Mauricio', '13 st', 1414141
+EXECUTE AddBorrow 14, 'Mira', '14 st', 1515151
+EXECUTE AddBorrow 15, 'Jessica', '15 st', 1616161
+EXECUTE AddBorrow 16, 'Grace', '16 st', 1717171
+EXECUTE AddBorrow 17, 'Rey', '17 st', 1818181
+EXECUTE AddBorrow 18, 'Sarah', '18 st', 1919191
+EXECUTE AddBorrow 19, 'Brittney', '19 st', 2020202
+EXECUTE AddBorrow 20, 'Justin', '20 st', 212121
+EXECUTE AddBorrow 21, 'Tyler', '21 st', 2323232
+EXECUTE AddBorrow 22, 'Peter', '22 st', 2424242
+EXECUTE AddBorrow 23, 'Jackson', '23 st', 2525252
+EXECUTE AddBorrow 24, 'Mia', '24 st', 2626262
+EXECUTE AddBorrow 25, 'Triss', '25 st', 2727272
+EXECUTE AddBorrow 26, 'Seth', '26 st', 2828282
+EXECUTE AddBorrow 27, 'Jenny', '27 st', 2929292
+EXECUTE AddBorrow 28, 'Baek', '28 st', 3030303
+EXECUTE AddBorrow 29, 'Oliver', '29 st', 3131313
+EXECUTE AddBorrow 30, 'Amy', '30 st', 3232323
+EXECUTE AddBorrow 31, 'Jimmy', '31 st', 3434343
+EXECUTE AddBorrow 32, 'Peyton', '32 st', 3535353
+EXECUTE AddBorrow 33, 'Eli', '33 st', 3636363
 GO
 ------Borrowers------
 EXECUTE AddLoans 1, 100, 1, Null, Null
@@ -282,7 +285,7 @@ EXECUTE AddLoans 1, 105, 4, Null, Null
 EXECUTE AddLoans 1, 104, 5, Null, Null
 EXECUTE AddLoans 1, 104, 6, Null, Null
 EXECUTE AddLoans 1, 102, 7, Null, Null
-EXECUTE AddLoans 1, 101, 8, Null, Null
+EXECUTE AddLoans 1, 101, 8, Null, 'Today'
 EXECUTE AddLoans 1, 103, 9, Null, Null
 EXECUTE AddLoans 1, 105, 10, Null, Null
 EXECUTE AddLoans 1, 103, 11, Null, Null
@@ -312,7 +315,7 @@ EXECUTE AddLoans 4, 104, 21, Null, Null
 EXECUTE AddLoans 4, 100, 2, Null, Null
 EXECUTE AddLoans 4, 100, 22, Null, Null
 EXECUTE AddLoans 5, 102, 3, Null, Null
-EXECUTE AddLoans 6, 101, 23, Null, Null
+EXECUTE AddLoans 6, 101, 23, Null, 'Today'
 EXECUTE AddLoans 7, 101, 23, Null, Null
 EXECUTE AddLoans 8, 101, 23, Null, Null
 EXECUTE AddLoans 8, 101, 24, Null, Null
@@ -331,6 +334,115 @@ EXECUTE AddLoans 14, 101, 29, Null, Null
 EXECUTE AddLoans 14, 104, 30, Null, Null
 EXECUTE AddLoans 17, 105, 31, Null, Null
 GO
+
+
+--------------------------------Queries-----------------------------------
+--1--
+USE TTA
+SELECT 
+	B.BookID, 
+	B.Title, 
+	bc.BranchID, 
+	bc.No_Of_Copies, 
+	lb.BranchName
+FROM BOOK AS b
+	INNER JOIN Book_copies AS bc
+		on b.BookID = bc.BookID
+	INNER JOIN Library_Branch AS lb
+		on bc.BranchID = Lb.BranchID
+WHERE Title LIKE 'The Lost Tribe'
+AND BranchName LIKE 'Sharpstown'
+GO
+--2--
+SELECT 
+	B.BookID, 
+	B.Title, 
+	bc.BranchID, 
+	bc.No_Of_Copies, 
+	lb.BranchName
+INTO #BookToBranch
+FROM BOOK AS b
+	INNER JOIN Book_copies AS bc
+		on b.BookID = bc.BookID
+	INNER JOIN Library_Branch AS lb
+		on bc.BranchID = Lb.BranchID
+GO
+SELECT 
+	Title, 
+	BranchName, 
+	SUM(No_of_copies) AS TotalOwned 
+FROM #BookToBranch
+WHERE Title = 'The Lost Tribe'
+GROUP BY Title, BranchName
+GO
+--3--
+SELECT *
+FROM Borrower as Bo
+	LEFT OUTER JOIN Book_Loans as BL
+	 on Bo.CardNO LIKE BL.CardNO
+	 WHERE BL.CardNO is NULL
+GO
+--4--
+SELECT DISTINCT 
+	b.BookID, 
+	BL.BranchID, 
+	BL.DueDate, 
+	LB.BranchName, 
+	b.Title, 
+	Bo.Name, 
+	Bo.Address
+FROM Book_Loans as BL
+	INNER JOIN Library_Branch as LB
+		on BL.BranchID = LB.BranchID
+	INNER JOIN Book as b
+		on b.BookID = BL.BookID
+	INNER JOIN Borrower as Bo
+		on bo.CardNO = BL.CardNO
+WHERE DueDate = 'Today'
+GO
+--5--
+SELECT 
+	LB.BranchName, 
+	Count(BL.BranchID) as #LoanedOut
+FROM Library_Branch as LB
+	INNER JOIN Book_Loans as BL
+		on LB.BranchID = BL.BranchID
+GROUP BY LB.BranchName
+GO
+--6--
+SELECT DISTINCT
+	bo.CardNO, 
+	bo.Name, 
+	bo.Address, 
+	Count(DISTINCT BL.BookID) as NumBooks
+FROM Borrower as bo
+	INNER JOIN Book_Loans as BL
+		on bo.CardNO = BL.CardNO
+	INNER JOIN Book_Copies as BC
+		on Bl.BookID = bc.BookID
+
+GROUP BY bo.CardNO, bo.Name, bo.Address 
+HAVING Count(DISTINCT BL.BookID) > 4;
+GO
+--7--
+SELECT DISTINCT 
+	b.BookID,
+	b.Title,
+	BA.AuthorName,
+	Bc.No_Of_Copies,
+	LB.BranchName,
+	LB.BranchID
+FROM BOOK as b
+	INNER JOIN Book_Authors as BA
+	on b.BookID = BA.BookID
+	INNER JOIN Book_Copies as BC
+	on bc.BookID = b.BookID
+	INNER JOIN Library_Branch as LB
+	on bc.BranchID = LB.BranchID
+WHERE AuthorName LIKE 'Stephen King'
+AND BranchName LIKE 'Central'
+GO
+
 --------------------------------PROCEDURE-----------------------------------
 
 SELECT B.BookID, B.Title, bc.BranchID, bc.No_Of_Copies, lb.BranchName
